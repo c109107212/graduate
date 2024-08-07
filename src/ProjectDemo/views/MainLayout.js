@@ -73,7 +73,7 @@ const Header = () => {
             <Row className=' mt-8 mb-4 '>
                 <Col span={1}></Col>
                 {paths?.map((data, i) => (
-                    <NavItem onClick={() => { navigate(`/${data?.url}`) }}>
+                    <NavItem onClick={() => { navigate(`${data?.url}`) }}>
                         {data?.name}
                     </NavItem>
                 ))}
