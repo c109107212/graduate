@@ -1,11 +1,9 @@
 .custom-link {
     padding: 0 1%;
-    /* 調整左右內邊距以變長 */
     text-decoration: none;
     color: black;
     background-color: gainsboro;
     border-radius: 0 5px 0px 5px;
-    /* 圓角 */
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-right: 0.1%;
     display: inline-block;
@@ -14,35 +12,20 @@
 }
 
 .custom-link:hover {
-    background-color: #ff6347;
-    color: white;
+    background-color: #9f0c0d;
+    color: gainsboro;
 }
 
 .link-container {
     display: flex;
     gap: 2px;
     align-items: center;
-}
-
-.custom-link:hover {
-    background-color: #9f0c0d;
-    color: gainsboro;
-}
-
-.link-container {
-    display: flex;
     padding: 0 5%;
 }
 
-.link-color {
-    color: black;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.link-colo-active {
+.link-color-active {
+    color: white; 
     background-color: #9f0c0d;
-    color: gainsboro;
 }
 
 .setdisplay-column {
@@ -53,9 +36,7 @@
 .setdisplay-row {
     display: flex;
     flex-direction: row;
-
 }
-
 
 .settest_center_left {
     display: flex;
@@ -79,12 +60,12 @@
 
 .test_mid {
     position: absolute;
-    top: 33%;
-    left: 30px;
+    top: 25%;
+    padding:2%;
     max-width: 50%;
 }
 
-.image-container img {
+.image-container-img {
     padding: 0.5%;
     height: auto;
 }

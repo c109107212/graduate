@@ -1,0 +1,38 @@
+.contacts-title{
+    background-color: #cfe2f6;
+    /* padding: 0 10%; */
+    flex-wrap: nowrap;
+    font-weight: bold;
+    margin:3% 0 0.1% 0;
+    align-items: center;     
+    
+}
+.contacts-text{
+    background-color: #eff7ff;
+    /* padding: 0 10%; */
+    margin-bottom: 0.1%; 
+}
+
+.col-style-bold{
+    padding: 0 10%;
+    font-weight: bold;
+}
+.col-style{
+    padding: 0 10%;
+}
+
+.setdisplay-column {
+    display: flex;
+    align-items: center;     
+    height: 100%;  
+}
+iframe {
+    border: none;           /* 去除边框 */
+    max-width: 800px;       /* 最大宽度为800px */
+    height: 100%;          /* 高度为500px */
+    margin: auto;           /* 居中显示 */
+    display: block;         /* 避免行内元素的布局问题 */
+}
+p{
+    padding: 1% 5% ;
+}

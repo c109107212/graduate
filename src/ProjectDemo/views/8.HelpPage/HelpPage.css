@@ -1,0 +1,11 @@
+.setdisplay-column {
+    display: flex;
+    flex-direction: column;
+    /* 由上到下 */
+}
+
+.setdisplay-row {
+    display: flex;
+    flex-direction: row; 
+    /* 從左至右 */
+}
