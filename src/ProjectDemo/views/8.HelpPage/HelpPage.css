@@ -1,11 +1,54 @@
-.setdisplay-column {
+
+.background_blue{
+    background-color: #CEE3F6;
+    margin-top: 3%;
+}
+.backgrounda_lightblue{
+    background-color: #F0F8FF;
+    text-align: center;
+    padding: 1%;
+}
+.Col_style{
+    align-items: center;
+    justify-content: center;
     display: flex;
-    flex-direction: column;
-    /* 由上到下 */
+}
+.Col_style_left{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: start;
+}
+.table_top{
+    margin-top: 2%;
+    background-color: #b0b8c1;
+    border: 1 solid #3b3e42;
+}
+.table_title{
+    margin-top: 2%;
+    background-color: #b0b8c1;
+    border: 1 solid #3b3e42;
+    
 }
 
-.setdisplay-row {
-    display: flex;
-    flex-direction: row; 
-    /* 從左至右 */
+.table-container {
+  padding: 20px;
+  background-color: #E0E0E0;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th, .custom-table td {
+  border: 1px solid black;
+  padding: 8px;
+
+}
+.custom-table td{
+    background-color: white;
+}
+.custom-table th {
+  background-color: #B0B0B0;
 }

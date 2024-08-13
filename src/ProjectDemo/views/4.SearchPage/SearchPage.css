@@ -1,0 +1,55 @@
+.table_Search {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid aliceblue;
+}
+
+.th_Search, .td_Search {
+    padding: 8px;
+    text-align: center;
+    width:100px;
+    border-bottom: 2px solid #ddd; 
+    border-right: 2px solid white; 
+}
+.th_Search {
+    background-color: #094b8d;
+    color: #eff7ff;
+}
+ .td_Search {
+    background-color: #eff7ff;
+}
+select{
+    width: 100%;
+}
+.search-section {
+    background-color: #eff7ff;
+}
+.Search_button{
+    padding: 0 2%;
+    border-bottom: 2px solid #848484; 
+    text-decoration: none;
+    color: black;
+    background-color: rgb(244, 244, 244);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 5%;
+    font-size: 16px;
+    text-align: center;
+
+}
+form{
+    align-items: center;
+    justify-content: center;
+    border: none;          
+    max-width: 800px;      
+    height: 100%;          
+    margin: auto;          
+    display: block;  
+    margin:  auto;
+
+}
+.Ans_style {
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}

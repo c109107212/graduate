@@ -3,6 +3,7 @@
     /* padding: 0 10%; */
     flex-wrap: nowrap;
     font-weight: bold;
+    
     margin:3% 0 0.1% 0;
     align-items: center;     
     
@@ -21,18 +22,54 @@
     padding: 0 10%;
 }
 
-.setdisplay-column {
+.setdisplay-column-contacts {
     display: flex;
     align-items: center;     
+    justify-content: center;   
     height: 100%;  
 }
+
 iframe {
-    border: none;           /* 去除边框 */
-    max-width: 800px;       /* 最大宽度为800px */
-    height: 100%;          /* 高度为500px */
-    margin: auto;           /* 居中显示 */
-    display: block;         /* 避免行内元素的布局问题 */
+    align-items: center;
+    justify-content: center;
+    border: none;          
+    max-width: 800px;      
+    height: 100%;          
+    margin: auto;          
+    display: block;  
+    margin:  auto;
 }
 p{
     padding: 1% 5% ;
+}
+
+label {
+    /* font-size: 18px;  */
+    margin-bottom: 10px; 
+    display: block; 
+}
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 1%; 
+    border: 1px solid #ccc; 
+}
+textarea {
+    height: 120px;
+}
+
+.ContactsPage_button{
+    padding: 0 2%;
+    border-bottom: 2px solid #ddd; 
+    text-decoration: none;
+    color: black;
+    background-color: rgb(244, 244, 244);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 1%;
+    font-size: small;
+    text-align: center;
+
 }

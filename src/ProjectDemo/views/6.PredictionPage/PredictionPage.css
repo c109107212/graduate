@@ -1,0 +1,30 @@
+.svm-style, .hmm-style {
+    display: flex;
+    align-items: center;
+    padding: 10px 5%; 
+    background-color: #cfe2f6;
+}
+.svm-style{
+    background-color: #94c1f1;
+}
+.hmm-style{
+    background-color: #cfe2f6;
+}
+.PredictionPage_button {
+    margin-right: 20px; 
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    border: 1px solid #ddd; 
+    text-align: center; 
+    font-size: 16px; 
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.label-text {
+    flex-grow: 1; 
+    padding-left: 20px; 
+}

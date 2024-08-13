@@ -1,0 +1,48 @@
+.setdisplay-column {
+    display: flex;
+    flex-direction: column;
+    /* 由上到下 */
+}
+
+.setdisplay-row {
+    display: flex;
+    flex-direction: row;
+    /* 從左至右 */
+}
+
+.div_style {
+    padding: 2%10%;
+}
+
+
+.DataInformation_th_blue {
+    background-color: #eff7ff;
+    color: black;
+}
+.DataInformation_th_pink {
+    background-color: #ffe0ee;
+    color: black;
+}
+.DataInformation_th_green {
+    background-color:#efffd7;
+    color: black;
+}
+.DataInformation_th_red{
+    background-color:#feebec;
+    color: black;
+}
+.DataInformation_td{
+    background-color: white;
+}
+
+.DataInformation_table {
+    margin: 0 auto; 
+    border-collapse: collapse; 
+}
+.DataInformation_td{
+    padding: 8px;
+    text-align: center;
+    width:100px;
+    border-bottom: 2px solid #ddd; 
+    border-right: 2px solid white; 
+}

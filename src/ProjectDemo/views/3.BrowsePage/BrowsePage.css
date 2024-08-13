@@ -1,0 +1,20 @@
+.table_BrowsePage {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid aliceblue;
+}
+
+.th_BrowsePage, .td_BrowsePage {
+    padding: 8px;
+    text-align: center;
+    width:100px;
+    border-bottom: 2px solid #ddd; 
+    border-right: 2px solid white; 
+}
+.th_BrowsePage {
+    background-color: #094b8d;
+    color: #eff7ff;
+}
+ .td_BrowsePage {
+    background-color: #eff7ff;
+}

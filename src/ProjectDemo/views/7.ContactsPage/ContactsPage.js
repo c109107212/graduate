@@ -14,7 +14,7 @@ const ContactsPage = ({
     <>
       <div style={{ padding: '3%' }}>
         <h1>ADAM</h1>
-        <div className='setdisplay-column'>
+        <div className='setdisplay-column-contacts'>
           <div style={{ width: "80%" }}>
             <Row className='contacts-title' >
               <Col span={12} className='col-style'>Professor</Col>
@@ -59,23 +59,28 @@ const ContactsPage = ({
               <Col span={10} style={{ padding: "4%" }}>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.3770786605182!2d121.77211182813686!3d25.150993616441696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345d4f063c44f073%3A0x58da11f75dcc14d!2z5ZyL56uL6Ie654Gj5rW35rSL5aSn5a24!5e0!3m2!1szh-TW!2sde!4v1723012183418!5m2!1szh-TW!2sde" width="100%" height="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </Col>
-            </Row>
-            <Row className='contacts-text'>
-             
-              <form action="/submit-your-form-handler" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required />
-                <br></br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required />
-                <br></br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required />
-                <br></br>
-                <input type="reset" value="Clean" />
-                <input type="submit" value="Submit" />
 
-              </form>
+            </Row>
+            <Row className='contacts-title' style={{ textAlign: 'center' }}>
+              <Col span={24} className='col-style'>feeback</Col>
+            </Row>
+            <Row className='contacts-text' style={{ textAlign: 'center' }}>
+              <Col span={24} className='col-style'>
+                <form action="/submit-your-feedback" method="post">
+                  <label for="name">*Name</label>
+                  <input type="text" id="name" name="name" required />
+
+                  <label for="email">*Email</label>
+                  <input type="email" id="email" name="email" required />
+
+                  <label for="comments">*Comments</label>
+                  <textarea id="comments" name="comments" required></textarea>
+                  
+                  <button className='ContactsPage_button' type="reset">Clear</button>
+                  <button className='ContactsPage_button' type="submit">Submit</button>
+                </form>
+
+              </Col>
 
 
             </Row>
