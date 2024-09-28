@@ -15,6 +15,9 @@ import SvmAns from './views/6.PredictionPage/SvmAns';
 import HMMAns from './views/6.PredictionPage/HMMAns';
 import HMMPage from './views/6.PredictionPage/HMM';
 import StartPage from './views/1.StartPage/StartPage';
+
+import AboutPage from './views/7.ContactsPage/AboutPage';
+import FeebackPage from './views/7.ContactsPage/feebackPage';
 const routeComponents = {
     Search: SearchPage,
     Browse: BrowsePage,
@@ -39,6 +42,10 @@ const MainRoute = () => {
                     
                     <Route path="/Prediction/HMM" element={<HMMPage />} />
                     <Route path="/Prediction/HMM/HMMAns" element={<HMMAns />} />
+                    
+                    <Route path="/FeebackPage" element={<FeebackPage />} />
+                    
+                    <Route path="/About-us" element={<AboutPage />} />
 
                 </Route>
 

@@ -1,34 +1,31 @@
+
 .custom-link {
-    padding: 0 2%;
-    text-decoration: none;
+    white-space: nowrap;
     color: black;
-    background-color: gainsboro;
-    border-radius:5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-right: 0.1%;
-    display: inline-block;
-    font-size: 16px;
-    text-align: center;
+    text-decoration: none;
+    padding: 2% 8%; 
+    border-bottom: 1px solid #9f0c0d; 
+    transition: background-color 0.3s, color 0.3s; 
+
+    align-items: center;
+    justify-content: center; 
 }
 
-.custom-link:hover {
-    background-color: #9f0c0d;
-    color: gainsboro;
-    border-radius:5px;
-    border:solid gainsboro; 
+.custom-link:hover, .custom-link.link-color-active {
+    color: white;
+    background-color: #9f0c0d; 
+    border-radius: 5px; 
+    border-bottom: none; 
 }
 
 .link-container {
     display: flex;
-    gap: 2px;
+    gap: 1px; 
     align-items: center;
     padding: 0 5%;
+    justify-content: space-between;
 }
 
-.link-color-active {
-    color: white; 
-    background-color: #9f0c0d;
-}
 
 .setdisplay-column {
     display: flex;
@@ -72,3 +69,20 @@
     padding: 0.5%;
     height: auto;
 }
+.container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    gap: 20px; 
+}
+
+.title {
+    font-size: 24px; 
+    color: #333; 
+}
+
+.content {
+    max-width: 600px; 
+    text-align: justify;
+}
+

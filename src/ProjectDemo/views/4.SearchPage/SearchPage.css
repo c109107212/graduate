@@ -1,3 +1,15 @@
+
+.Paragraph-style-search {
+    position: absolute;
+    top: 35%;
+    left: 10%;           
+    right: 10%;          
+    line-height: 2rem;
+    font-size: 90%;
+    margin-bottom:1px
+}
+
+
 .table_Search {
     width: 100%;
     border-collapse: collapse;
@@ -53,3 +65,53 @@ form{
     justify-content: center;
     padding: 5%;
 }
+.title_lable{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 1%;
+    
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center
+
+}
+.search-results-container{
+    padding:  0 3% 3% 3%;
+}
+.divstyle_right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin: 1%;
+}
+
+
+.title_lable_ans{
+    background-color: #a81919;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 1%;
+    color: #eff7ff;
+    text-align: center;
+    margin-bottom: 2%;
+
+
+}
+.titlebackground {
+    background: linear-gradient(to bottom, #9f0c0d, #790000); 
+    color: white;
+    padding: 5px 20px; 
+    border-radius: 5px;
+    margin: 10px 0; 
+    font-size:  20px ;
+}
+.sequence-column {
+    white-space: normal; 
+    word-break: break-word; 
+    overflow-wrap: break-word;
+  }

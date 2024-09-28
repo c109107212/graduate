@@ -20,7 +20,7 @@ const Prediction = () => {
     <>
       <div style={{ padding: '3%' }}>
         <div className="table-container">
-          <h1>Fold Clusters (structure-sequence) Information:</h1>
+          <h1>AMP Prediction Tools:</h1>
           
           <div style={{ padding: '1% 10%', margin: '0 5%' }}>
             <Row>
@@ -31,22 +31,22 @@ const Prediction = () => {
               </Col>
             </Row>
             <Row className='svm-style'>
-              <Col span={4}>
+              <Col span={7} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <button className='PredictionPage_button' onClick={SvmClick}>SVM</button>
               </Col>
-              <Col span={20}>
-                <label>
-                  ADAM provides two computational tools built to predict whether the target peptides/proteins are antimicrobial. To make prediction, users can upload the protein sequences with FASTA format to ADAM.
+              <Col span={17}>
+                <label style={{width:'60%'}}>
+                   Support Vector Machines are used to recognize the AMP patterns using amino acid composition.
                 </label>
               </Col>
             </Row>
             <Row className='hmm-style'>
-              <Col span={4}>
+              <Col span={7} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <button className='PredictionPage_button' onClick={HMMClick}>HMM</button>
               </Col>
-              <Col span={20}>
-                <label>
-                  ADAM provides two computational tools built to predict whether the target peptides/proteins are antimicrobial. To make prediction, users can upload the protein sequences with FASTA format to ADAM.
+              <Col span={17}>
+                <label style={{width:'60%'}}>
+                Profile hidden Markov models are used to search the AMP homologs.
                 </label>
               </Col>
             </Row>

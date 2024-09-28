@@ -11,13 +11,12 @@
     background-color: #cfe2f6;
 }
 .PredictionPage_button {
-    margin-right: 20px; 
     padding: 10px 20px;
     background-color: #f4f4f4;
     border-radius: 5px;
     border: 1px solid #ddd; 
     text-align: center; 
-    font-size: 16px; 
+    font-size: 20px; 
     display: inline-flex; 
     align-items: center;
     justify-content: center;
