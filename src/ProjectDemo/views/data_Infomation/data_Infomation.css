@@ -38,11 +38,15 @@
 .DataInformation_table {
     margin: 0 auto; 
     border-collapse: collapse; 
+    width: 100%;
 }
 .DataInformation_td{
     padding: 8px;
     text-align: center;
-    width:100px;
     border-bottom: 2px solid #ddd; 
     border-right: 2px solid white; 
 }
+
+.jmolInline {
+    display: none;
+  }

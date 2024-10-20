@@ -33,58 +33,8 @@ const DataInformation = () => {
 
     getDatainfo();
   }, [id]);
-  useEffect(() => {
-    if (adamData) {
-      get3d();
-    }
-  }, [adamData]); 
-  const get3d=() => {
-    const script = document.createElement("script");
-    const controls = document.getElementById("jsmolControls");
-    const ClusterPdbId = adamData.cluster_pdb_id.slice(0, 4).toUpperCase();
-    script.src = "/JSmol.min.js"; // 指向 public 目錄下的 JSmol.min.js
-    script.onload = () => {
-      if (window.Jmol) {
-        console.log("Jmol 加載成功");
-        setTimeout(() => {
-          var Info = {
-            width: 300,
-            height: 300,
-            j2sPath: "/j2s",  // 指向 j2s 文件夾
-            script: `load /jmol/adam_models/${ClusterPdbId}.pdb; cpk off; wireframe off; ribbons; color ribbons structure; spin on;`,
-            use: "HTML5",
-            serverURL: "/j2s/php/jsmol.php"
-          };
-          const container = document.getElementById("jsmolContainer");
-          if (container  && controls) {
-            container.innerHTML = window.Jmol.getAppletHtml("jsmolApplet", Info);
-            controls.innerHTML = `
-            <div>Ribbons Color</div>
-            <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons none')" />None
-            <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons structure')" checked/>Structure
-            <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons amino')" />Amino
-            <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons skyblue')" />Skyblue
-            <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons yellow')" />Yellow
-            <br />
-            <input type="checkbox" onclick="Jmol.script(jsmolApplet, this.checked ? 'wireframe on' : 'wireframe off')" />Wireframe on/off
-            <input type="checkbox" onclick="Jmol.script(jsmolApplet, this.checked ? 'spin on' : 'spin off')" checked/>Spin on/off
-            <br />
-            <div>Spacefill</div>
-            <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill off')" checked />Off
-            <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill 25%')" />25%
-            <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill on')" />100%
-            <br />
-            <button onclick="Jmol.script(jsmolApplet, 'zoom 300')">Zoom 300</button>
-            <button onclick="Jmol.script(jsmolApplet, 'zoom 100')">Zoom 100</button>
-          `;
-          } else {
-            console.error("jsmolContainer 元素未找到");
-          }
-        }, 1000);  // 延遲 1 秒檢查 DOM
-      }
-    };
-    document.body.appendChild(script);
-  };
+
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -141,10 +91,7 @@ const DataInformation = () => {
                     </>
                   )}
                 </tr>
-                <div className='DataInformation_section'>
-                <div id="jsmolContainer"></div> 
-                <div id="jsmolControls"></div>  
-              </div>
+
 
                 <tr>
                   <th className='DataInformation_th_pink'>CATH</th>

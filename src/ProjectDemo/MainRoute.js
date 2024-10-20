@@ -15,7 +15,7 @@ import SvmAns from './views/6.PredictionPage/SvmAns';
 import HMMAns from './views/6.PredictionPage/HMMAns';
 import HMMPage from './views/6.PredictionPage/HMM';
 import StartPage from './views/1.StartPage/StartPage';
-
+import DataInformation_3D from './views/data_Infomation/data_Infomation_3D';
 import AboutPage from './views/7.ContactsPage/AboutPage';
 import FeebackPage from './views/7.ContactsPage/feebackPage';
 const routeComponents = {
@@ -37,6 +37,7 @@ const MainRoute = () => {
                     ))}
                     <Route path={`/Search/SearchAns`} element={<SearchAns />} />
                     <Route path="/Search/SearchAns/:id" element={<DataInformation />} />
+                    <Route path="/Search/SearchAns/:id/:cluster_pdb_id" element={<DataInformation_3D/>} />
                     <Route path="/Prediction/svm" element={<SvmPage />} />
                     <Route path="/Prediction/svm/SvmAns" element={<SvmAns />} />
                     
