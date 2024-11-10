@@ -11,7 +11,7 @@ const DataInformation = () => {
   const { setUser } = useContext(MyContext);
   const [adamData, setAdamData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [selectedValue, setSelectedValue] = useState('001');
   const getDatainfo = async () => {
     try {
       const response = await fetch(`http://localhost/api/getDatainfo?adam_id=${id}`);
@@ -33,12 +33,83 @@ const DataInformation = () => {
 
     getDatainfo();
   }, [id]);
+  useEffect(() => {
+    if (adamData) {
+      get3d();
+    }
+  }, [adamData]);
+
+  useEffect(() => {
+    if (adamData) {
+      get3d();
+      console.log(`alphafold2pdb/1to2_5/${id}_${selectedValue}.pdb`)
+    }
+  }, [selectedValue]);
+
+  const get3d = () => {
+    const script = document.createElement("script");
+    const controls = document.getElementById("jsmolControls");
+    if (adamData.cluster_pdb_id != null) {
+      script.src = "/JSmol.min.js"; // 指向 public 目錄下的 JSmol.min.js
+      script.onload = () => {
+        if (window.Jmol) {
+          console.log("Jmol 加載成功");
+          setTimeout(() => {
+            var Info = {
+              width: 300,
+              height: 300,
+              j2sPath: "/j2s",  // 指向 j2s 文件夾
+              script: `load /alphafold2pdb/1to2_5/${id}_${selectedValue}.pdb; cpk off; wireframe off; ribbons; color ribbons structure; spin on;`,
+              use: "HTML5",
+              serverURL: "/j2s/php/jsmol.php"
+            };
+
+            const container = document.getElementById("jsmolContainer");
+            const controls = document.getElementById("jsmolControls");
+
+            if (container && controls) {
+              // 加载 JSmol 小部件
+              container.innerHTML = window.Jmol.getAppletHtml("jsmolApplet", Info);
+
+              // 设置控制面板 HTML
+              controls.innerHTML = `
+                <div style="text-align: left;">
+                  <div>Ribbons Color</div>
+                  <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons none')" />None
+                  <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons structure')" checked/>Structure
+                  <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons amino')" />Amino
+                  <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons skyblue')" />Skyblue
+                  <input type="radio" name="ribbonsColor" onclick="Jmol.script(jsmolApplet, 'color ribbons yellow')" />Yellow
+                  <br />
+                  <input type="checkbox" onclick="Jmol.script(jsmolApplet, this.checked ? 'wireframe on' : 'wireframe off')" />Wireframe on/off
+                  <input type="checkbox" onclick="Jmol.script(jsmolApplet, this.checked ? 'spin on' : 'spin off')" checked/>Spin on/off
+                  <br />
+                  <div>Spacefill</div>
+                  <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill off')" checked />Off
+                  <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill 25%')" />25%
+                  <input type="radio" name="spacefill" onclick="Jmol.script(jsmolApplet, 'spacefill on')" />100%
+                  <br />
+                  <button onclick="Jmol.script(jsmolApplet, 'zoom 300')">Zoom 300</button>
+                  <button onclick="Jmol.script(jsmolApplet, 'zoom 100')">Zoom 100</button>
+                </div>
+              `;
+            } else {
+              console.error("jsmolContainer 或 jsmolControls 元素未找到");
+            }
+          }, 1000);  // 延遲 1 秒檢查 DOM
+        }
+      };
+      document.body.appendChild(script);
 
 
+    }
+
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       {adamData ? (
@@ -56,7 +127,7 @@ const DataInformation = () => {
                 </tr>
                 <tr>
                   <th className='DataInformation_th_blue'>Sequence</th>
-                  <td className='DataInformation_td'>{adamData.sp}</td>
+                  <td className='DataInformation_td'>{adamData.sequence}</td>
                 </tr>
                 <tr>
                   <th className='DataInformation_th_blue'>Description</th>
@@ -74,23 +145,47 @@ const DataInformation = () => {
                   <th className='DataInformation_th_pink'>Cluster ID</th>
                   <td className='DataInformation_td'><a href="./cluster_detail.php?f=2">AC-11</a></td>
                 </tr>
-                <tr>
 
-                  {adamData.cluster_pdb_id ? (
-                    <>
+
+                {adamData.cluster_pdb_id ? (
+                  <tr>
                     <th className='DataInformation_th_pink'>Representative Fold</th>
-                    <td className='DataInformation_td' >
-                      <button style={{backgroundColor:'#ffe0ee',padding:'2px 20px 2px 20px', borderRadius:'5px'}} onClick={() => navigate(`/Search/SearchAns/${adamData.adam_id}/${adamData.cluster_pdb_id.slice(0, 4)}`)}>SHOW</button>
+                    <td>
+                      <div style={{ display: "flex", alignItems: 'flex-start' ,height:'350px'}}>
+                        <div id="jsmolContainer"></div>
+                        <div className='jsmolbuttomshow'>
+                          <div id="jsmolControls" ></div>
+                        </div>
+                      </div>
+                      <div id="jsmolbuttom">
+                              <button
+                                className={`pdb-button ${selectedValue === '001' ? 'selected' : ''}`}
+                                onClick={() => setSelectedValue('001')}>Model 1 (Best)</button>
+                              <button
+                                className={`pdb-button ${selectedValue === '002' ? 'selected' : ''}`}
+                                onClick={() => setSelectedValue('002')}>Model 2</button>
+                              <button
+                                className={`pdb-button ${selectedValue === '003' ? 'selected' : ''}`}
+                                onClick={() => setSelectedValue('003')}>Model 3</button>
+                              <button
+                                className={`pdb-button ${selectedValue === '004' ? 'selected' : ''}`}
+                                onClick={() => setSelectedValue('004')}>Model 4</button>
+                              <button
+                                className={`pdb-button ${selectedValue === '005' ? 'selected' : ''}`}
+                                onClick={() => setSelectedValue('005')}>Model 5</button>
+                            </div>
+
                     </td>
-                    </>
-                    
-                  ) : (
-                    <>
-                      <th className='DataInformation_th_pink'>Representative Fold</th>
-                      <td>null</td>
-                    </>
-                  )}
-                </tr>
+                  </tr>
+
+
+                ) : (
+                  <tr>
+                    <th className='DataInformation_th_pink'>Representative Fold</th>
+                    <td className='DataInformation_td'>null</td>
+                  </tr>
+                )}
+
 
 
                 <tr>

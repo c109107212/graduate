@@ -19,34 +19,85 @@
     background-color: #eff7ff;
     color: black;
 }
+
 .DataInformation_th_pink {
     background-color: #ffe0ee;
     color: black;
 }
+
 .DataInformation_th_green {
-    background-color:#efffd7;
+    background-color: #efffd7;
     color: black;
 }
-.DataInformation_th_red{
-    background-color:#feebec;
+.DataInformation_th_yellow {
+    background-color: #ffef85;
     color: black;
 }
-.DataInformation_td{
+
+.DataInformation_th_red {
+    background-color: #feebec;
+    color: black;
+}
+
+.DataInformation_td {
     background-color: white;
 }
 
 .DataInformation_table {
-    margin: 0 auto; 
-    border-collapse: collapse; 
+    margin: 0 auto;
+    border-collapse: collapse;
     width: 100%;
 }
-.DataInformation_td{
+
+.DataInformation_td {
     padding: 8px;
     text-align: center;
-    border-bottom: 2px solid #ddd; 
-    border-right: 2px solid white; 
+    border-bottom: 2px solid #ddd;
+    border-right: 2px solid white;
 }
 
 .jmolInline {
     display: none;
+}
+
+
+.jsmolbuttomshow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;       
+        justify-content: center;   
+        margin-left: auto;
+        margin-right: auto;       
+        text-align: center;        
+        min-height: 400px;         
+      
+      
+}
+.jsmolbuttom {
+    display: flex;
+    align-items: center;       
+    justify-content: center;       
+    text-align: center;        
+    min-height: 400px;         
+  
+  
+}
+.pdb-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 1px solid #9f0c0d;
+    background-color: #dfafaf;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 15px;
+    
+    border-radius: 5px;
+    text-align: center;
+  }
+  .pdb-button.selected {
+    background-color: #9f0c0d;
+    color: white;
+    border-radius: 5px;
+    border-bottom: none;
   }
