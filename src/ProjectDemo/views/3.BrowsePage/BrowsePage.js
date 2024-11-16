@@ -3,13 +3,16 @@ import './BrowsePage.css';  // 引入樣式文件
 import { MyContext } from '../../../Context/MyContext';
 import { Table, message, Pagination } from 'antd';
 
+
+import { useNavigate } from 'react-router-dom';
 const BrowsePage = () => {
   const { user, setUser, language, setLanguage } = useContext(MyContext);
   const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(25); // 預設每頁顯示25條記錄
   const [data, setData] = useState([]);
-
+  const navigate = useNavigate();
+  
   const fetchTotal = (tableName) => {
 
     fetch(`http://localhost/api/getTotal?table=${tableName}`)
@@ -143,12 +146,11 @@ const BrowsePage = () => {
       key: 'cluster_id',
       width: '10%',
       render: (text, record) => (
-        <div className='td_BrowsePage'>
+        <div className='td_BrowsePage' onClick={() => navigate(`/Browse/${record.cluster_id}`)} style={{ cursor: 'pointer' }}>
           {`AC_${text.padStart(3, '0')}`}
-          <a href={`http://www.rcsb.org/pdb/explore.do?structureId=${text}`}>
-            <img src={`/60cluster_net_jpg/${text}.jpg`} style={{ height: '80px', width: 'auto' }} alt="" />
-          </a>
+          <img src={`/60cluster_net_jpg/${text}.jpg`} style={{ height: '80px', width: 'auto' }} alt="" />
         </div>
+        
       )
     },
     {

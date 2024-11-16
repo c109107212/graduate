@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState , useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MyContext } from '../../../Context/MyContext';
 import "./data_Infomation.css";
@@ -13,7 +13,7 @@ const DataInformation = () => {
   const [adamDataComposition, setAdamDataComposition] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedValue, setSelectedValue] = useState('001');
-  const chartRef = useRef(null)
+  const chartRef = useRef(null);
 
   const getDatainfo = async () => {
     try {
@@ -21,7 +21,6 @@ const DataInformation = () => {
       const data = await response.json();
       if (data.status === 'success') {
         setAdamData(data.data[0]);
-
         setLoading(false);
         console.log(data.data[0]);
       } else {
@@ -29,47 +28,54 @@ const DataInformation = () => {
       }
     } catch (error) {
       message.error('An error occurred while fetching data');
-
     }
   };
+
   const getComposition = async () => {
     try {
       const response = await fetch(`http://localhost/api/getComposition?adam_id=${id}`);
       const data = await response.json();
       if (data.status === 'success') {
         setAdamDataComposition(data.data[0]);
-
       } else {
         message.error(data.message || 'Failed to fetch data');
       }
     } catch (error) {
       message.error('An error occurred while fetching data');
-
     }
   };
-  useEffect(() => {
 
+  useEffect(() => {
     getDatainfo();
     getComposition();
   }, [id]);
-  
+
   useEffect(() => {
     if (adamData) {
       get3d();
+      get3d_Corresponding();
     }
   }, [adamData]);
 
   useEffect(() => {
     if (adamData) {
       get3d();
-      console.log(`alphafold2pdb/1to2_5/${id}_${selectedValue}.pdb`)
+      console.log(`alphafold2pdb/1to2_5/${id}_${selectedValue}.pdb`);
     }
   }, [selectedValue]);
+
+  const get3d_Corresponding = () => {
+    if (adamData && adamData.cluster_pdb_id != null) {
+      const tmp0 = adamData.cluster_pdb_id;
+      const sub_p1 = tmp0.substring(0, 4);
+      const add = `http://www.rcsb.org/pdb/explore.do?structureId=${sub_p1}`;
+      console.log("Corresponding PDB URL:", add);
+    }
+  };
+
   const get3d = () => {
     const script = document.createElement("script");
-    const controls = document.getElementById("jsmolControls");
-    if (adamData.cluster_pdb_id != null) {
-
+    if (adamData && adamData.cluster_pdb_id != null) {
       script.src = "/JSmol.min.js"; // 指向 public 目錄下的 JSmol.min.js
       script.onload = () => {
         if (window.Jmol) {
@@ -78,7 +84,7 @@ const DataInformation = () => {
             var Info = {
               width: 300,
               height: 300,
-              j2sPath: "/j2s",  // 指向 j2s 文件夾
+              j2sPath: "/j2s", // 指向 j2s 文件夾
               script: `load /alphafold2pdb/1to2_5/${id}_${selectedValue}.pdb; cpk off; wireframe off; ribbons; color ribbons structure; spin on;`,
               use: "HTML5",
               serverURL: "/j2s/php/jsmol.php"
@@ -116,17 +122,12 @@ const DataInformation = () => {
             } else {
               console.error("jsmolContainer 或 jsmolControls 元素未找到");
             }
-          }, 1000);  // 延遲 1 秒檢查 DOM
+          }, 1000); // 延遲 1 秒檢查 DOM
         }
       };
       document.body.appendChild(script);
-
-
     }
-
   };
-
-  
 
   useEffect(() => {
     if (adamDataComposition) {
@@ -229,7 +230,6 @@ const DataInformation = () => {
     });
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -270,39 +270,35 @@ const DataInformation = () => {
                   <td className='DataInformation_td'><a href="./cluster_detail.php?f=2">AC-11</a></td>
                 </tr>
 
-
                 {adamData.cluster_pdb_id ? (
                   <tr>
                     <th className='DataInformation_th_pink'>Representative Fold</th>
                     <td>
-                      <div style={{ display: "flex", alignItems: 'flex-start' ,height:'350px'}}>
+                      <div style={{ display: "flex", alignItems: 'flex-start', height: '350px' }}>
                         <div id="jsmolContainer"></div>
                         <div className='jsmolbuttomshow'>
-                          <div id="jsmolControls" ></div>
+                          <div id="jsmolControls"></div>
                         </div>
                       </div>
                       <div id="jsmolbuttom">
-                              <button
-                                className={`pdb-button ${selectedValue === '001' ? 'selected' : ''}`}
-                                onClick={() => setSelectedValue('001')}>Model 1 (Best)</button>
-                              <button
-                                className={`pdb-button ${selectedValue === '002' ? 'selected' : ''}`}
-                                onClick={() => setSelectedValue('002')}>Model 2</button>
-                              <button
-                                className={`pdb-button ${selectedValue === '003' ? 'selected' : ''}`}
-                                onClick={() => setSelectedValue('003')}>Model 3</button>
-                              <button
-                                className={`pdb-button ${selectedValue === '004' ? 'selected' : ''}`}
-                                onClick={() => setSelectedValue('004')}>Model 4</button>
-                              <button
-                                className={`pdb-button ${selectedValue === '005' ? 'selected' : ''}`}
-                                onClick={() => setSelectedValue('005')}>Model 5</button>
-                            </div>
-
+                        <button
+                          className={`pdb-button ${selectedValue === '001' ? 'selected' : ''}`}
+                          onClick={() => setSelectedValue('001')}>Model 1 (Best)</button>
+                        <button
+                          className={`pdb-button ${selectedValue === '002' ? 'selected' : ''}`}
+                          onClick={() => setSelectedValue('002')}>Model 2</button>
+                        <button
+                          className={`pdb-button ${selectedValue === '003' ? 'selected' : ''}`}
+                          onClick={() => setSelectedValue('003')}>Model 3</button>
+                        <button
+                          className={`pdb-button ${selectedValue === '004' ? 'selected' : ''}`}
+                          onClick={() => setSelectedValue('004')}>Model 4</button>
+                        <button
+                          className={`pdb-button ${selectedValue === '005' ? 'selected' : ''}`}
+                          onClick={() => setSelectedValue('005')}>Model 5</button>
+                      </div>
                     </td>
                   </tr>
-
-
                 ) : (
                   <tr>
                     <th className='DataInformation_th_pink'>Representative Fold</th>
@@ -310,14 +306,23 @@ const DataInformation = () => {
                   </tr>
                 )}
 
+                <tr>
+                  <th className='DataInformation_th_pink'>Corresponding PDB</th>
+                  <td className='DataInformation_td'>
+                    {adamData.cluster_pdb_id ? (
+                      <a href={`http://www.rcsb.org/pdb/explore.do?structureId=${adamData.cluster_pdb_id.substring(0, 4)}`} target="_blank" rel="noopener noreferrer">
+                        {adamData.cluster_pdb_id}
+                      </a>
 
-
+                    ) : (
+                      'N/A'
+                    )}
+                  </td>
+                </tr>
                 <tr>
                   <th className='DataInformation_th_pink'>CATH</th>
                   {adamData.cath_c && adamData.cath_a && adamData.cath_t ? (
-
                     <td className='DataInformation_td'>
-
                       {adamData.cath_c || 'null'}, {adamData.cath_a || 'N/A'}, {adamData.cath_t || 'N/A'}
                     </td>
                   ) : (
@@ -341,17 +346,16 @@ const DataInformation = () => {
                 <tr>
                   <th colSpan="2" style={{ backgroundColor: '#ffef85', color: 'black' }}>Composition</th>
                 </tr>
-                <tr style={{ height:'200px'}}>
-                  <td colSpan="2" className='DataInformation_td ' style={{ height:'200px',width:'400px' }}><canvas id="myChart" width="600" height="300"></canvas></td>
+                <tr style={{ height: '200px' }}>
+                  <td colSpan="2" className='DataInformation_td' style={{ height: '200px', width: '400px' }}><canvas id="myChart" width="600" height="300"></canvas></td>
                 </tr>
-                
 
                 <tr>
                   <th colSpan="2" style={{ backgroundColor: '#d3ff93', color: 'black' }}>Physical Properties</th>
                 </tr>
                 <tr>
                   <th className='DataInformation_th_green'>Length</th>
-                  <td className='DataInformation_td'>Length</td>
+                  <td className='DataInformation_td'>{adamData.length}</td>
                 </tr>
                 <tr>
                   <th className='DataInformation_th_green'>Aliphatic Index</th>
@@ -365,7 +369,6 @@ const DataInformation = () => {
                   <th className='DataInformation_th_green'>Hydropathicity</th>
                   <td className='DataInformation_td'>{adamData.hydropathicity}</td>
                 </tr>
-
 
                 <tr>
                   <th colSpan="2" style={{ backgroundColor: '#f2cac9', color: 'black' }}>External Links</th>
